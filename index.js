@@ -1,4 +1,3 @@
-// Helper to update the total price
 function updateTotal() {
   let total = 0;
   document.querySelectorAll('.card-body').forEach(cardBody => {
@@ -13,8 +12,7 @@ function updateTotal() {
   document.querySelector('.total').textContent = `${total} $`;
 }
 
-// Handle plus and minus buttons
-document.querySelectorAll('.card-body').forEach(cardBody => {
+document.querySelectorAll('.list-products > .card-body').forEach(cardBody => {
   const plusBtn = cardBody.querySelector('.fa-plus-circle');
   const minusBtn = cardBody.querySelector('.fa-minus-circle');
   const quantitySpan = cardBody.querySelector('.quantity');
@@ -36,10 +34,8 @@ document.querySelectorAll('.card-body').forEach(cardBody => {
   }
 });
 
-// Handle delete (trash) buttons
 document.querySelectorAll('.fa-trash-alt').forEach(trashBtn => {
   trashBtn.addEventListener('click', () => {
-    // Remove the whole product card (outer .card-body)
     const outerCardBody = trashBtn.closest('.list-products > .card-body');
     if (outerCardBody) {
       outerCardBody.remove();
@@ -48,11 +44,9 @@ document.querySelectorAll('.fa-trash-alt').forEach(trashBtn => {
   });
 });
 
-// Handle like (heart) buttons
 document.querySelectorAll('.fa-heart').forEach(heartBtn => {
   heartBtn.addEventListener('click', () => {
     heartBtn.classList.toggle('liked');
-    // Toggle color: red if liked, default otherwise
     if (heartBtn.classList.contains('liked')) {
       heartBtn.style.color = 'red';
     } else {
@@ -61,5 +55,4 @@ document.querySelectorAll('.fa-heart').forEach(heartBtn => {
   });
 });
 
-// Initial total
 updateTotal();
